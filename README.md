@@ -1,6 +1,6 @@
-# Chandrayaan-2 DFSAR Investigation of a Doubly Shadowed Crater within Faustini PSR
+# Chandrayaan-2 SAR Investigation of a Doubly Shadowed Crater within Faustini PSR
 
-An end-to-end remote-sensing pipeline for detecting and characterising subsurface water ice in the lunar south polar Faustini Permanently Shadowed Region (PSR), using Chandrayaan-2 DFSAR compact-polarimetry SAR, OHRC high-resolution optical imagery, and machine-learning validation.
+An end-to-end remote-sensing pipeline for detecting and characterising subsurface water ice in the lunar south polar Faustini Permanently Shadowed Region (PSR), using Chandrayaan-2 SAR compact-polarimetry SAR, OHRC high-resolution optical imagery, and machine-learning validation.
 
 ---
 
@@ -14,7 +14,7 @@ An end-to-end remote-sensing pipeline for detecting and characterising subsurfac
 
 Water ice trapped in lunar south-polar PSRs is a critical resource for future crewed missions — as drinking water, oxygen, and rocket propellant via electrolysis. Doubly Shadowed Craters (DSCs), craters nested inside a PSR whose floors receive no scattered sunlight, are the thermally coldest environments on the Moon and the highest-priority targets for ice characterisation.
 
-The Chandrayaan-2 DFSAR instrument (L-band, 1.25 GHz, compact polarimetry) provides ~2–5 m penetration into dry lunar regolith, making it the primary tool for detecting buried ice dielectric anomalies without contact drilling.
+The Chandrayaan-2 SAR instrument (L-band, 1.25 GHz, compact polarimetry) provides ~2–5 m penetration into dry lunar regolith, making it the primary tool for detecting buried ice dielectric anomalies without contact drilling.
 
 ---
 
@@ -22,7 +22,7 @@ The Chandrayaan-2 DFSAR instrument (L-band, 1.25 GHz, compact polarimetry) provi
 
 ### Polarimetric ice indicators
 
-The pipeline uses two independent observables derived from the DFSAR compact-polarimetry data (left-circular transmit, LH + LV coherent receive):
+The pipeline uses two independent observables derived from the SAR compact-polarimetry data (left-circular transmit, LH + LV coherent receive):
 
 **Circular Polarisation Ratio (CPR)**
 
@@ -59,7 +59,7 @@ CPR and DOP thresholds are validated by sensitivity sweep curves (Fig. 02) that 
 
 ### Bayesian posterior probability
 
-A per-pixel ice posterior P(ice | CPR, DOP, PSR) is computed from calibrated likelihood ratios based on published DFSAR and Mini-RF studies:
+A per-pixel ice posterior P(ice | CPR, DOP, PSR) is computed from calibrated likelihood ratios based on published SAR and Mini-RF studies:
 
 | Evidence | P(evidence \| ice) | P(evidence \| no-ice) |
 |----------|------------------|-----------------------|
@@ -104,7 +104,7 @@ Ice fraction per pixel is inverted from CPR using the **Polder–van Santen (PVS
 ε_eff = ε_host + f_ice × (ε_ice − ε_host) × ε_eff / (ε_eff + N × (ε_ice − ε_eff))
 ```
 
-where ε_regolith = 2.7 + 0.001j and ε_ice = 3.15 + 0.001j (L-band, 200 K). A forward CPR(f_ice) model is calibrated against Mini-RF/DFSAR literature values:
+where ε_regolith = 2.7 + 0.001j and ε_ice = 3.15 + 0.001j (L-band, 200 K). A forward CPR(f_ice) model is calibrated against Mini-RF/SAR literature values:
 
 ```
 CPR(f_ice) = 0.30 + 5.0 × Δε^0.85 × √f_ice
@@ -126,7 +126,7 @@ Combined relative uncertainty ~35–40%, consistent with indirect radar inversio
 ## Pipeline Steps
 
 ```
-Raw Chandrayaan-2 data (DFSAR + OHRC + DEM)
+Raw Chandrayaan-2 data (SAR + OHRC + DEM)
          │
          ▼
 Step 0   Data loading
@@ -141,7 +141,7 @@ Step 1   PSR mapping + DSC identification
          │   • Lobate rim score, depth-to-diameter ratio
          │   • Stefan-Boltzmann thermal model → 110 K cold-trap map
          │
-Step 2   DFSAR polarimetric ice detection
+Step 2   SAR polarimetric ice detection
          │   • Lee-sigma speckle filter
          │   • CPR and full-Stokes DOP computation
          │   • Dual criterion + terrain gate
@@ -207,7 +207,7 @@ Step 8   Figure generation (17 publication-quality outputs + interactive dashboa
 │   ├── data_loader.py            # Chandrayaan-2 ZIP archive loader
 │   ├── real_data_loader.py       # Real DFRS / SAR / OHRC ingestion
 │   ├── psr_mapping.py            # PSR labelling, DSC detection, lobate rim score
-│   ├── dfsar_analysis.py         # CPR, DOP (Stokes), spatial coherence filter,
+│   ├── SAR_analysis.py         # CPR, DOP (Stokes), spatial coherence filter,
 │   │                             #   ice detection, Bayesian posterior, ROC (ice_conf),
 │   │                             #   false-positive analysis, KS/MW statistics
 │   ├── ml_classifier.py          # Random Forest classifier, 5-fold CV, feature
@@ -228,7 +228,7 @@ Step 8   Figure generation (17 publication-quality outputs + interactive dashboa
 ├── generate_stability_map.py
 ├── data/
 │   └── raw/
-│       ├── DFRS/                 # Chandrayaan-2 DFSAR compact-pol ZIP archives
+│       ├── DFRS/                 # Chandrayaan-2 SAR compact-pol ZIP archives
 │       ├── SAR/                  # Level-0 SAR raw data (.dat + .xml)
 │       └── OHRC/                 # OHRC calibrated images + browse PNGs
 │           └── */browse/calibrated/*.png   ← auto-loaded by pipeline
@@ -260,7 +260,7 @@ Core dependencies: `numpy`, `scipy`, `matplotlib`, `scikit-image`, `scikit-learn
 python main.py
 ```
 
-Generates a 1000 × 1000 pixel (10 km × 10 km, 10 m/px) physics-consistent scene — DEM, illumination, PSR mask, DFSAR backscatter with embedded ice anomaly, and OHRC optical image — then runs the full pipeline. Total runtime approximately 130 s. All figures are saved to `results/figures/`.
+Generates a 1000 × 1000 pixel (10 km × 10 km, 10 m/px) physics-consistent scene — DEM, illumination, PSR mask, SAR backscatter with embedded ice anomaly, and OHRC optical image — then runs the full pipeline. Total runtime approximately 130 s. All figures are saved to `results/figures/`.
 
 If real OHRC browse PNGs are present under `data/raw/OHRC/`, they are automatically loaded and used in place of the synthetic OHRC image.
 
@@ -292,13 +292,13 @@ python -m nbconvert --to notebook --execute --inplace \
 
 ### Real data notes
 
-**SAR / DFSAR:** Chandrayaan-2 DFSAR L0B raw compact-pol data (`_d_r0b_xx_cp_xx_d18.dat`) is present in `data/raw/SAR/`. ISRO does not publish processed DFSAR products (focused SLC / calibrated CPR maps), so these L0B files are used only to extract instrument parameters (NES0 = −20.1 dB) for calibrating the synthetic noise floor.
+**SAR / SAR:** Chandrayaan-2 SAR L0B raw compact-pol data (`_d_r0b_xx_cp_xx_d18.dat`) is present in `data/raw/SAR/`. ISRO does not publish processed SAR products (focused SLC / calibrated CPR maps), so these L0B files are used only to extract instrument parameters (NES0 = −20.1 dB) for calibrating the synthetic noise floor.
 
 **OHRC:** Real browse PNGs (`data/raw/OHRC/**/browse/calibrated/*.png`) are automatically loaded and used in place of the synthetic optical image whenever present.
 
 **DFRS:** The DFRS archive (Chandrayaan-2 radio science) contains ionospheric Doppler occultation data, not SAR backscatter, and is not used in the ice detection pipeline.
 
-If ISRO publishes focused DFSAR L1B/L2 products in the future, place them here and enable with:
+If ISRO publishes focused SAR L1B/L2 products in the future, place them here and enable with:
 
 ```bash
 python main.py --real
@@ -329,7 +329,7 @@ python main.py --real --inspect
 |----------|-------------|
 | `00_dashboard.png` | Master 8-panel summary with key-stats footer |
 | `01_overview.png` | DEM (a), illumination (b), PSR+DSC map (c), surface temperature (d) |
-| `02_dfsar_analysis.png` | CPR (a), DOP (b), ice detection (c), posterior (d), CPR sensitivity (e), DOP sensitivity (f) |
+| `02_SAR_analysis.png` | CPR (a), DOP (b), ice detection (c), posterior (d), CPR sensitivity (e), DOP sensitivity (f) |
 | `03_morphology.png` | Slope (a), roughness (b), boulder density (c), OHRC image (d), hazard map (e), rim profile (f) |
 | `04_landing_site.png` | MCDA score (a), factor maps (b–g), AHP bar chart (h), candidate ranking |
 | `05_traverse.png` | Cost map (a), rover path (b), power margin (c), elevation profile (d) |
@@ -391,14 +391,14 @@ Sweeping the CPR threshold produces a degenerate ROC when synthetic ice labels a
 Maximum-filter NMS can select multiple peaks within the same topographic feature. Greedy suppression with a 1 km exclusion radius guarantees candidates come from genuinely different terrain and illumination zones, which matters for mission risk diversification.
 
 **Why PVS mixing over a simple linear model?**
-The Polder–van Santen model accounts for the self-consistent dielectric response of the ice–regolith mixture, including the non-linear dependence of CPR on f_ice (CPR saturates at high ice fractions). The forward model is calibrated to published miniRF/DFSAR observations: f=0.3 → CPR ≈ 1.1, f=0.5 → CPR ≈ 1.8.
+The Polder–van Santen model accounts for the self-consistent dielectric response of the ice–regolith mixture, including the non-linear dependence of CPR on f_ice (CPR saturates at high ice fractions). The forward model is calibrated to published miniRF/SAR observations: f=0.3 → CPR ≈ 1.1, f=0.5 → CPR ≈ 1.8.
 
 **Hazard thresholds**
 Slope limits follow JAXA SELENE / NASA Artemis surface mobility standards: Safe ≤ 10°, Caution 10–15°, Danger 15–20°, Impassable > 20°. Applied consistently in morphology, landing site gate, and A* cost map.
 
 **Data source transparency**
 
-The two files in `data/raw/SAR/` are authentic Chandrayaan-2 DFSAR instrument data in compact polarimetry mode (`_d_r0b_xx_cp_xx_d18.dat`, 2.6 GB + 2.4 GB). However, ISRO publicly releases only **L0B raw** (BAQ-compressed unfocused complex samples). Processed DFSAR products — focused SLC (L1B), calibrated backscatter, or ready-to-use CPR/DOP maps (L2) — are **not available on the ISRO website**. This is the reason synthetic data is used: the required processed product simply does not exist as a public download.
+The two files in `data/raw/SAR/` are authentic Chandrayaan-2 SAR instrument data in compact polarimetry mode (`_d_r0b_xx_cp_xx_d18.dat`, 2.6 GB + 2.4 GB). However, ISRO publicly releases only **L0B raw** (BAQ-compressed unfocused complex samples). Processed SAR products — focused SLC (L1B), calibrated backscatter, or ready-to-use CPR/DOP maps (L2) — are **not available on the ISRO website**. This is the reason synthetic data is used: the required processed product simply does not exist as a public download.
 
 Two additional constraints apply even if focusing were performed:
 - The L0B scenes cover −88.8°S, −147°E, not the Faustini target (−87.2°S, +87°E)
