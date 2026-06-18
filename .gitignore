@@ -1,0 +1,32 @@
+# Raw instrument data — too large for GitHub (use ISRO data portal)
+# SAR L0B compact-pol raw binary (2.6 GB + 2.4 GB)
+*.dat
+# OHRC full-resolution calibrated images (1.2 GB each)
+*.img
+
+# DFRS radio-occultation archives (not used in pipeline)
+data/raw/DFRS/
+
+# Computed pipeline cache (regenerate with python main.py)
+.cache/
+
+# Large generated HTML dashboard (regenerate with python generate_interactive.py)
+results/interactive_dashboard.html
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

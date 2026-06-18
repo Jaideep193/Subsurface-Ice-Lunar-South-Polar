@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "generated_utc": "2026-06-17T08:07:29Z",
+    "pipeline_elapsed_s": 20.3,
+    "data_source": "synthetic_calibrated",
+    "target_region": "Faustini PSR, Lunar South Pole",
+    "instrument": "Chandrayaan-2 DFSAR L-band 1.25 GHz",
+    "grid_size_px": 1000,
+    "pixel_scale_m": 10.0
+  },
+  "scene": {
+    "psr_coverage_pct": 28.68,
+    "dsc_center_row": 250,
+    "dsc_center_col": 500,
+    "dsc_radius_px": 20,
+    "dsc_diameter_m": 400.0,
+    "center_lat_deg": -87.0,
+    "center_lon_deg": 0.0
+  },
+  "dfsar_detection": {
+    "cpr_threshold": 0.8,
+    "dop_threshold": 0.13,
+    "dop_method": "Stokes (I,Q,U,V)",
+    "ice_pixels": 173,
+    "ice_area_m2": 17300.0,
+    "ice_area_km2": 0.0173,
+    "ice_pct_of_psr": 0.06,
+    "mean_cpr_ice": 1.1088,
+    "mean_dop_ice": 0.0778
+  },
+  "statistical_validation": {
+    "cohens_d_cpr": 4.2205,
+    "effect_size": "large",
+    "ks_statistic": 0.9733,
+    "ks_pvalue": 0.0,
+    "ks_significant": true,
+    "mw_pvalue_dop": 0.0,
+    "n_ice_samples": 173,
+    "n_nonpsr_samples": 286596
+  },
+  "false_positive_analysis": {
+    "n_candidates": 8376,
+    "n_rough_fp": 3108,
+    "pct_rough_fp": 37.11,
+    "n_ejecta_fp": 7706,
+    "pct_ejecta_fp": 92.0,
+    "precision_pct": 2.07
+  },
+  "roc_performance": {
+    "auc": 0.0,
+    "optimal_cpr_threshold": 0.827,
+    "optimal_tpr": 0.3095,
+    "optimal_fpr": 0.0001
+  },
+  "ice_volume": {
+    "total_m3": 37725.8346,
+    "total_km3": 3.773e-05,
+    "mean_ice_fraction": 0.4361,
+    "mean_depth_m": 5.0,
+    "bearing_area_km2": 0.0173,
+    "mass_kg": 15087974.5
+  },
+  "monte_carlo_uncertainty": {
+    "n_samples": 300,
+    "sources": [
+      "CPR noise \u00b10.1",
+      "depth \u00b130% lognormal",
+      "dielectric \u00b120% Gaussian"
+    ],
+    "mean_m3": 38968.3193,
+    "std_m3": 13725.3061,
+    "rel_unc_pct": 35.2,
+    "p5_m3": 18309.8404,
+    "p25_m3": 28541.3664,
+    "p50_m3": 37668.7665,
+    "p75_m3": 47545.1243,
+    "p95_m3": 64005.0308
+  },
+  "thermal_stability": {
+    "stable_ice_px": 173,
+    "stable_ice_pct": 100.0,
+    "stable_T_mean_K": 42.0,
+    "seasonal_ice_px": 0,
+    "seasonal_ice_pct": 0.0,
+    "unstable_ice_px": 0,
+    "unstable_ice_pct": 0.0,
+    "T_mean_psr_K": 42.0,
+    "T_min_psr_K": 42.0
+  },
+  "isru_assessment": {
+    "note": "P50 scenario; PEM electrolysis \u03b7=0.70; Sabatier CH4 path",
+    "electrolysis_efficiency": 0.7,
+    "water_p10_t": 16790.1236,
+    "water_p50_t": 34542.2589,
+    "water_p90_t": 58692.6133,
+    "h2_propellant_p50_t": 2705.6951,
+    "o2_propellant_p50_t": 21473.8861,
+    "ch4_sabatier_p50_t": 5411.3903,
+    "o2_for_ch4_combust_t": 21645.5611,
+    "dv_context_kms": 1.7,
+    "crew_water_l_per_person_day": 1.83,
+    "crew_days_p50": 18876.0
+  },
+  "landing_sites": {
+    "n_candidates": 5,
+    "best_score": 0.7296,
+    "best_slope_deg": 6.619,
+    "best_illumination": 1.0,
+    "best_lat_deg": -86.959576,
+    "best_lon_deg": 0.1253
+  },
+  "morphology": {
+    "mean_slope_deg": 11.61,
+    "max_slope_deg": 65.14,
+    "mean_roughness": 9.4925,
+    "mean_boulder_density": 0.0151
+  }
+}
