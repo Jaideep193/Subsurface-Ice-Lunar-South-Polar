@@ -207,7 +207,7 @@ Step 8   Figure generation (17 publication-quality outputs + interactive dashboa
 │   ├── data_loader.py            # Chandrayaan-2 ZIP archive loader
 │   ├── real_data_loader.py       # Real DFRS / SAR / OHRC ingestion
 │   ├── psr_mapping.py            # PSR labelling, DSC detection, lobate rim score
-│   ├── SAR_analysis.py         # CPR, DOP (Stokes), spatial coherence filter,
+│   ├── dfsar_analysis.py         # CPR, DOP (Stokes), spatial coherence filter,
 │   │                             #   ice detection, Bayesian posterior, ROC (ice_conf),
 │   │                             #   false-positive analysis, KS/MW statistics
 │   ├── ml_classifier.py          # Random Forest classifier, 5-fold CV, feature
@@ -329,7 +329,7 @@ python main.py --real --inspect
 |----------|-------------|
 | `00_dashboard.png` | Master 8-panel summary with key-stats footer |
 | `01_overview.png` | DEM (a), illumination (b), PSR+DSC map (c), surface temperature (d) |
-| `02_SAR_analysis.png` | CPR (a), DOP (b), ice detection (c), posterior (d), CPR sensitivity (e), DOP sensitivity (f) |
+| `02_dfsar_analysis.png` | CPR (a), DOP (b), ice detection (c), posterior (d), CPR sensitivity (e), DOP sensitivity (f) |
 | `03_morphology.png` | Slope (a), roughness (b), boulder density (c), OHRC image (d), hazard map (e), rim profile (f) |
 | `04_landing_site.png` | MCDA score (a), factor maps (b–g), AHP bar chart (h), candidate ranking |
 | `05_traverse.png` | Cost map (a), rover path (b), power margin (c), elevation profile (d) |
