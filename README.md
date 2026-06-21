@@ -1,6 +1,6 @@
-# Chandrayaan-2 SAR Investigation of a Doubly Shadowed Crater within Faustini PSR
+# Chandrayaan-2 DFSAR Investigation of a Doubly Shadowed Crater within Faustini PSR
 
-An end-to-end remote-sensing pipeline for detecting and characterising subsurface water ice in the lunar south polar Faustini Permanently Shadowed Region (PSR), using Chandrayaan-2 SAR compact-polarimetry SAR, OHRC high-resolution optical imagery, and machine-learning validation.
+An end-to-end remote-sensing pipeline for detecting and characterising subsurface water ice in the lunar south polar Faustini Permanently Shadowed Region (PSR), using Chandrayaan-2 DFSAR compact-polarimetry SAR, OHRC high-resolution optical imagery, and machine-learning validation.
 
 ---
 
@@ -59,7 +59,7 @@ CPR and DOP thresholds are validated by sensitivity sweep curves (Fig. 02) that 
 
 ### Bayesian posterior probability
 
-A per-pixel ice posterior P(ice | CPR, DOP, PSR) is computed from calibrated likelihood ratios based on published SAR and Mini-RF studies:
+A per-pixel ice posterior P(ice | CPR, DOP, PSR) is computed from calibrated likelihood ratios based on published DFSAR and Mini-RF studies:
 
 | Evidence | P(evidence \| ice) | P(evidence \| no-ice) |
 |----------|------------------|-----------------------|
